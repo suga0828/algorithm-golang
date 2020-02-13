@@ -1,0 +1,6 @@
+.DS_Store
+github.com/
+golang.org/
+bitbucket.org/
+vendor/
+*.env
