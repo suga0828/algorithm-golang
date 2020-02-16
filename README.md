@@ -1,3 +1,3 @@
-## Golang algorithm
+## Golang packages
 
-Repository to experiment with algorithms and implement it with Golang
+Repository with programs/app created with Golang
