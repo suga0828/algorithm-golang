@@ -19,7 +19,7 @@ func BubbleSort(d []int, sArr []int) []int {
 		}
 		i++
 	}
-	sArr = append(sArr, d[len(d)-1])
+	sArr = append(d[len(d)-1], ...sArr)
 	d = d[:len(d)-1]
 	if len(d) > 0 {
 		sArr = BubbleSort(d, sArr)
@@ -28,12 +28,4 @@ func BubbleSort(d []int, sArr []int) []int {
 		sArr = reverseArr(sArr)
 	}
 	return sArr
-}
-
-func reverseArr(a []int) []int {
-	for i := len(a)/2 - 1; i >= 0; i-- {
-		opp := len(a) - 1 - i
-		a[i], a[opp] = a[opp], a[i]
-	}
-	return a
 }
