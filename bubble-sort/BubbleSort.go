@@ -2,7 +2,6 @@ package bubblesort
 
 // BubbleSort implements bubble sort algorithm
 func BubbleSort(d []int, sArr []int) []int {
-	l := len(d)
 	if len(d) == 0 {
 		if len(sArr) > 0 {
 			return sArr
@@ -19,13 +18,10 @@ func BubbleSort(d []int, sArr []int) []int {
 		}
 		i++
 	}
-	sArr = append(d[len(d)-1], ...sArr)
+	sArr = append([]int{d[len(d)-1]}, sArr...)
 	d = d[:len(d)-1]
 	if len(d) > 0 {
 		sArr = BubbleSort(d, sArr)
-	}
-	if len(sArr) == l {
-		sArr = reverseArr(sArr)
 	}
 	return sArr
 }
