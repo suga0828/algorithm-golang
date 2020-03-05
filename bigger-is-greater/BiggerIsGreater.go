@@ -7,9 +7,9 @@ import (
 
 var alphabet = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "z"}
 
-// Complete the biggerIsGreater function below.
+// BiggerIsGreater return the smallest lexicographically
+// higher string possible from the given string or "no answer".
 func BiggerIsGreater(w string) string {
-	w = " sod "
 	z := stringToArray(w)
 	fmt.Println(findIndexInArr(alphabet, z[1]))
 	return w
