@@ -1,4 +1,4 @@
-package main
+package guessthenumber
 
 import (
 	"bufio"
@@ -10,7 +10,9 @@ import (
 	"time"
 )
 
-func main() {
+// GuessTheNumber is a simple game for guessing a number
+// between 1 and 100
+func GuessTheNumber() {
 	fmt.Println("Guess a number between 1 and 100")
 
 	secretNumber := generateRandomInteger(1, 100)
