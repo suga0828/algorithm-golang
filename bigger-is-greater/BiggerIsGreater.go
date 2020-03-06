@@ -14,8 +14,7 @@ func BiggerIsGreater(w string) string {
 
 	for i := len(z) - 1; i > 0; i-- {
 		if z[i-1] < z[i] {
-			b := smallestGreaterThan(z[i-1:len(z)], z[i-1])
-			bI := indexInt(z, b)
+			b, bI := smallestGreaterThanAndIndex(z[i-1:len(z)], z[i-1], i-1)
 			z[bI] = z[i-1]
 			z[i-1] = b
 			pp := z[i:len(z)]
@@ -63,8 +62,8 @@ func elFromIndex(vs []string, t int) int {
 }
 
 func indexInt(vs []int, t int) int {
-	for i, v := range vs {
-		if v == t {
+	for i := len(vs) - 1; i > 0; i-- {
+		if vs[i] == t {
 			return i
 		}
 	}
@@ -81,18 +80,21 @@ func alphabeticIndexToString(arr []int) string {
 	return strings.Join(narr, "")
 }
 
-func smallestGreaterThan(arr []int, n int) int {
-	gArr := []int{}
-	for _, e := range arr {
+func smallestGreaterThanAndIndex(arr []int, n int, i int) (int, int) {
+	var s int
+	var l int
+	for k, e := range arr {
 		if e > n {
-			gArr = append(gArr, e)
+			if s == 0 && e != n {
+				s = e
+				l = k + i
+			}
+			if e < s {
+				s = e
+				l = k + i
+
+			}
 		}
 	}
-	s := gArr[0]
-	for _, v := range gArr {
-		if v < s {
-			s = v
-		}
-	}
-	return s
+	return s, l
 }
