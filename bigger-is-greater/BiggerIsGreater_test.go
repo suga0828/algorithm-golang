@@ -14,6 +14,7 @@ func TestBiggerIsGreater(t *testing.T) {
 		{"bb", "no answer"},
 		{"hefg", "hegf"},
 		{"dhck", "dhkc"},
+		{"dkhc", "hcdk"},
 		{"lmno", "lmon"},
 		{"dcba", "no answer"},
 		{"dcbb", "no answer"},

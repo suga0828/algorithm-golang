@@ -2,89 +2,38 @@ package biggerisgreater
 
 import (
 	"sort"
-	"strings"
 )
 
-var alphabet = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
+type runeSlice []rune
+
+func (p runeSlice) Len() int           { return len(p) }
+func (p runeSlice) Less(i, j int) bool { return p[i] < p[j] }
+func (p runeSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 
 // BiggerIsGreater return the smallest lexicographically
 // higher string possible from the given string or "no answer".
 func BiggerIsGreater(w string) string {
-	z := stringToAlphabeticIndex(w)
+	z := []rune(w)
 
 	for i := len(z) - 1; i > 0; i-- {
-		if z[i-1] < z[i] {
-			b, bI := smallestGreaterThanAndIndex(z[i-1:len(z)], z[i-1], i-1)
+		if int(z[i-1]) < int(z[i]) {
+			b, bI := smallestGreaterThanAndIndex(z[i-1:len(w)], z[i-1], i-1)
 			z[bI] = z[i-1]
 			z[i-1] = b
-			pp := z[i:len(z)]
-			sort.Ints(pp)
+			var pp runeSlice = z[i:len(z)]
+			sort.Sort(pp)
 			pz := append(z[0:i], pp...)
-			nz := alphabeticIndexToString(pz)
-			return nz
+			return string(pz)
 		}
 	}
 	return "no answer"
 }
 
-func mapStrInt(vs []string, f func(vs []string, t string) int) []int {
-	vsm := make([]int, len(vs))
-	for i, v := range vs {
-		vsm[i] = f(alphabet, v)
-	}
-	return vsm
-}
-
-func mapIntStr(vs []int) []string {
-	vsm := make([]string, len(vs))
-	for i, v := range vs {
-		vsm[i] = alphabet[v]
-	}
-	return vsm
-}
-
-func indexStr(vs []string, t string) int {
-	for i, v := range vs {
-		if v == t {
-			return i
-		}
-	}
-	return -1
-}
-
-func elFromIndex(vs []string, t int) int {
-	for i := range vs {
-		if i == t {
-			return i
-		}
-	}
-	return -1
-}
-
-func indexInt(vs []int, t int) int {
-	for i := len(vs) - 1; i > 0; i-- {
-		if vs[i] == t {
-			return i
-		}
-	}
-	return -1
-}
-
-func stringToAlphabeticIndex(str string) []int {
-	arr := strings.Split(strings.TrimSpace(str), "")
-	return mapStrInt(arr, indexStr)
-}
-
-func alphabeticIndexToString(arr []int) string {
-	narr := mapIntStr(arr)
-	return strings.Join(narr, "")
-}
-
-func smallestGreaterThanAndIndex(arr []int, n int, i int) (int, int) {
-	var s int
+func smallestGreaterThanAndIndex(arr []rune, n rune, i int) (rune, int) {
+	var s rune
 	var l int
 	for k, e := range arr {
-		if e > n {
+		if int(e) > int(n) {
 			if s == 0 && e != n {
 				s = e
 				l = k + i
