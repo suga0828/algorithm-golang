@@ -3,12 +3,9 @@ package main
 import (
 	"fmt"
 
-	bubblesort "github.com/suga0828/go-pkgs/bubble-sort"
-
-	biggerisgreater "github.com/suga0828/go-pkgs/bigger-is-greater"
+	gridsearch "github.com/suga0828/go-pkgs/grid-search"
 )
 
 func main() {
-	fmt.Println(biggerisgreater.BiggerIsGreater("sod"))
-	fmt.Println(bubblesort.BubbleSort([]int{2, 1}, []int{}))
+	fmt.Println(gridsearch.GridSearch([]string{"400453592126560", "114213133098692", "474386082879648", "522356951189169", "887109450487496", "252802633388782", "502771484966748", "075975207693780", "511799789562806", "404007454272504", "549043809916080", "962410809534811", "445893523733475", "768705303214174", "650629270887160"}, []string{"99", "99"}))
 }

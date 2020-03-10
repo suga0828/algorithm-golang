@@ -21,11 +21,16 @@ func TestGridSearch(t *testing.T) {
 			[]string{"99", "99"},
 			"NO",
 		},
+		{
+			[]string{"1", "1"},
+			[]string{"1", "1"},
+			"YES",
+		},
 	}
 	for _, str := range patterns {
 		total := GridSearch(str.g, str.p)
 		if !reflect.DeepEqual(total, str.e) {
-			t.Errorf("Operation over (%v) failed. got: grid %v pattern %v, want: %v.", str.g, str.p, total, str.e)
+			t.Errorf("Operation over (%v) with patter %v failed. got: %v, want: %v.", str.g, str.p, total, str.e)
 		}
 	}
 }
